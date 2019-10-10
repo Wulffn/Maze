@@ -1,12 +1,24 @@
 import model
 import view
 import time
+import printer
+
+def csvPrint():
+    grid = model.convert(model.DFS(model.make_empty_maze(5,5)))
+    printer.printFile(grid)
+    #model.search(1, 1, grid)
+    printer.readFile()
+
+
+    
+
 
 def solveMaze(size):
     grid = model.convert(model.DFS(model.make_empty_maze(size,size)))
     start = time.time()
     model.search(1, 1, grid)
     end = time.time()
+
 
     #print(grid)
 
@@ -19,6 +31,8 @@ def solveMaze(size):
     t = end - start
 
     lis = [t, count]
+
+    
 
     return lis
 
@@ -59,6 +73,7 @@ def start():
     inp = input()
     if inp == 'y':
         startMaze()
+        csvPrint()
     else:
         view.endView()
 
